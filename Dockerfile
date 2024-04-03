@@ -9,6 +9,8 @@ LABEL com.resilio.version="2.6.3"
 
 ARG TAR_URL=https://download-cdn.resilio.com/stable/linux-arm/resilio-sync_arm.tar.gz
 
+RUN uname -m | grep 'aarch64' && echo "adding armhf arch " && dpkg --add-architecture armhf && apt-get -q update && apt-get -yq install libc6:armhf
+
 RUN apt-get update && \
     apt-get -y install wget && \
     apt-get -y autoremove && \
